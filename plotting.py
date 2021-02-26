@@ -34,8 +34,6 @@ all_data.to_json("data_output.json")
 json_data = pd.read_json("data_output.json")
 json_data.info()
 
-print(json_data.loc['195012':'197512','Value'])
-
 temperature_plot = plt.bar (all_data.loc[:,"Value"], height=all_data.loc[:,"Value"], width=30)
 plt.show(block=True)
 
