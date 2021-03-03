@@ -25,15 +25,15 @@ print (processed_temperature_data)
 temperature_figure = plt.figure()
 temperature_plot = plt.bar (processed_temperature_data[:,0],processed_temperature_data[:,2], width=30)
 plt.show(block=True)
-temperature_figure.savefig('./temperature-over-time.pdf')
+temperature_figure.savefig('results/temperature-over-time.pdf')
 
 all_data = pd.read_csv("110-tavg-12-12-1950-2020.csv", index_col='Date', header=4)
 all_data.info()
-all_data.to_json("data_output.json")
+all_data.to_json("results/data_output.json")
 
 print("hello world", all_data.loc['195012':'197512','Value'])
 
-json_data = pd.read_json("data_output.json")
+json_data = pd.read_json("results/data_output.json")
 json_data.info()
 
 temperature_plot = plt.bar (all_data.loc[:,"Value"], height=all_data.loc[:,"Value"], width=30)
