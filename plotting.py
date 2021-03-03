@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Create an array (a multi-dimensional table) out of our data file, full of text
-all_data = np.genfromtxt("110-tavg-12-12-1950-2020.csv", delimiter=',',skip_header=5)
+all_data = np.genfromtxt("data/110-tavg-12-12-1950-2020.csv", delimiter=',',skip_header=5)
 print(all_data)
 
 # Select the data range we are interested in, convert it into a new array, full of numbers
@@ -27,7 +27,7 @@ temperature_plot = plt.bar (processed_temperature_data[:,0],processed_temperatur
 plt.show(block=True)
 temperature_figure.savefig('results/temperature-over-time.pdf')
 
-all_data = pd.read_csv("110-tavg-12-12-1950-2020.csv", index_col='Date', header=4)
+all_data = pd.read_csv("data/110-tavg-12-12-1950-2020.csv", index_col='Date', header=4)
 all_data.info()
 all_data.to_json("results/data_output.json")
 
