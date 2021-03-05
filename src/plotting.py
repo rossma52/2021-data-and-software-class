@@ -12,7 +12,6 @@ print(all_data)
 
 # Select the data range we are interested in, convert it into a new array, full of numbers
 temperature_data = np.array(all_data[5:,:], dtype=float)
-print(temperature_data)
 
 # Compute a new column by multiplying column number 1 to Kelvin
 temperature_kelvin = (temperature_data[:,1,None] - 32) * 5/9 + 273
