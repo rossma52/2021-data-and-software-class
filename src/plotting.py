@@ -6,11 +6,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# Create an array (a multi-dimensional table) out of our data file, full of text
-all_data = np.genfromtxt("data/110-tavg-12-12-1950-2020.csv", delimiter=',',skip_header=5)
+def read_data(filename,delimiter=',',starting_row=0):
+    """This function reads data from a specified filename. 
+    The specified filename should point to a .csv file."""
+    # Create an array (a multi-dimensional table) out of our data file, full of text
+    all_data = np.genfromtxt(filename, delimiter=delimiter,skip_header=5)
 
-# Select the data range we are interested in, convert it into a new array, full of numbers
-temperature_data = np.array(all_data[5:,:], dtype=float)
+    # Select the data range we are interested in, convert it into a new array, full of numbers
+    temperature_data = np.array(all_data[starting_row:,:], dtype=float)
+    return temperature_data
+
+temperature_data = read_data("data/110-tavg-12-12-1950-2020.csv", starting_row=5)
 
 # Compute a new column by multiplying column number 1 to Kelvin
 temperature_kelvin = (temperature_data[:,1,None] - 32) * 5/9 + 273
@@ -21,7 +27,7 @@ print (processed_temperature_data)
 
 # Create a figure of the processed data
 temperature_figure = plt.figure()
-temperature_plot = plt.bar (processed_temperature_data[:,0],processed_temperature_data[:,2], width=30, color='red')
+temperature_plot = plt.bar (processed_temperature_data[:,0],processed_temperature_data[:,2], width=30, color='green')
 plt.show(block=True)
 temperature_figure.savefig('results/temperature-over-time.pdf')
 
