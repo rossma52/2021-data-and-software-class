@@ -42,7 +42,7 @@ def test_plot_data():
     assert (os.path.exists(plot_filename))
 
 def test_convert_data():
-    input_file = "110-tavg-12-12-1950-2020.csv"
+    input_file = "stable_isotope_data_assignment2.csv"
     json_output_file = "data_output.json"
 
     data_directory = os.path.realpath(os.path.join(os.path.dirname(__file__),"..","data"))
@@ -53,7 +53,7 @@ def test_convert_data():
 
     plotting.convert_data(input_filename, json_filename)
 
-    input_data = pd.read_csv(input_filename, index_col='Date', header=4)
+    input_data = pd.read_csv(input_filename, index_col='Carbon', header=4)
     output_data = pd.read_json(json_filename)
 
     assert (True)
