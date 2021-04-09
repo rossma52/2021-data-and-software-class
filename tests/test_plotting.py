@@ -19,13 +19,13 @@ def test_process_data():
     assert(np.all(function_output == expected_output))
 
 def test_read_data():
-    input_file = "110-tavg-12-12-1950-2020.csv"
+    input_file = "stable_isotope_data_assignment2.csv"
     data_directory = os.path.realpath(os.path.join(os.path.dirname(__file__),"..","data"))
     input_filename = os.path.join(data_directory,input_file)
-    temperature_data = plotting.read_data(input_filename, starting_row=0)
+    isotope_data = plotting.read_data(input_filename, starting_row=3)
 
-    assert(temperature_data.shape == (71,3))
-    assert(temperature_data[0,1] == 51.39)
+    assert(isotope_data.shape == (54,2))
+    assert(isotope_data[0,1] == -5.85)
 
 def test_plot_data():
     plot_file = "test_plot_data.pdf"
