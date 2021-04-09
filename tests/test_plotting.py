@@ -12,9 +12,9 @@ def test_plot():
     assert(plotting.plot() == None)
 
 def test_process_data():
-    input_data = np.array([[0,32],[1,212]])
+    input_data = np.array([[-3,1.0288],[1,1.0288]])
     function_output = plotting.process_data(input_data)
-    expected_output = np.array([[0,32,273],[1,212,373]])
+    expected_output = np.array([[-3,1.0288],[1,1.0288]])
     
     assert(np.all(function_output == expected_output))
 
@@ -32,7 +32,7 @@ def test_plot_data():
     results_directory = os.path.realpath(os.path.join(os.path.dirname(__file__),"..","results"))
     plot_filename = os.path.join(results_directory,plot_file)
 
-    input_data = np.array([[0,32,273],[1,212,373]])
+    input_data = np.array([[-3,1.0288],[1,1.0288]])
 
     if os.path.exists(plot_filename):
         os.remove(plot_filename)

@@ -1,35 +1,23 @@
 
-absolute_zero_c = -273.15
+calcite_water = 1.0288
 
-def fahr_to_celsius(temperature):
-    return((temperature -32) * (5/9))
+def calcite_to_oxygencalcite(isotope):
+    return((isotope +1000) / (1000+0))
 
-def celsius_to_kelvin(temperature):
+def calciteoxygen_to_delta18oxygen(isotope):
     # Pre-conditions:
-    assert(temperature >= absolute_zero_c)
-    return(temperature+273.15)
-
-def fahr_to_kelvin(temperature_fahr):
-    temperature_c = fahr_to_celsius(temperature_fahr)
-    temperature_k = celsius_to_kelvin(temperature_c)
-    assert(temperature_k >= 0.0)
-    return temperature_k
+    assert(isotope >= calcite_water)
+    return((isotope)/(1000*1.0288)-1000)
 
 
-print("freezing point:", fahr_to_celsius(32))
-print("boiling point:", fahr_to_celsius(212))
-print("cold point:", fahr_to_kelvin(-212))
+
+print("Oxygen in Calcite:", calcite_to_oxygencalcite(1.0288))
+print("Delta 18 Oxygen:", calciteoxygen_to_delta18oxygen(28.8))
+
 
 # Post-conditions:
-assert (fahr_to_celsius(32) == 0.0)
-assert (fahr_to_celsius(212) == 100.0)
+assert (calcite_to_oxygencalcite(1.0288) == -3)
+assert (calcite_to_oxygencalcite(1.0288) == 1
 
-assert (celsius_to_kelvin(0.0) == 273.15)
-assert (celsius_to_kelvin(100.0) == 373.15)
-
-assert (fahr_to_kelvin(32) == 273.15)
-
-# Invariants:
-assert (absolute_zero_c == -273.15)
-fahr_to_kelvin(32)
-assert (absolute_zero_c == -273.15)
+assert (calciteoxygen_to_delta18oxygen(0.0) == 28.8)
+assert (calciteoxygen_to_delta18oxygen(100.0) == 28.8)
