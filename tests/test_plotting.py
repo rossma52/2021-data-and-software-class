@@ -1,4 +1,5 @@
-import sys, os
+import sys
+import os
 import numpy as np
 import pandas as pd
 
@@ -28,8 +29,8 @@ def test_read_data():
     assert(isotope_data[0,1] == -5.85)
 
 def test_plot_data():
-    plot_file = "test_plot_data.pdf"
-    results_directory = os.path.realpath(os.path.join(os.path.dirname(__file__),"..","results"))
+    plot_file = 'results/stable-isotopes.pdf'
+    results_directory = os.path.realpath(os.path.join(os.path.dirname(__file__),"..","results")
     plot_filename = os.path.join(results_directory,plot_file)
 
     input_data = np.array([[-3,1.0288],[1,1.0288]])
@@ -56,4 +57,4 @@ def test_convert_data():
     input_data = pd.read_csv(input_filename, index_col='Carbon', header=4)
     output_data = pd.read_json(json_filename)
 
-    assert (True)
+    assert input_data.info() is output_data.info()
