@@ -8,19 +8,33 @@ import pandas as pd
 import os
 import sys
 
-# Create an array (a multi-dimensional table) out of our data file, full of text
-all_data = np.genfromtxt("stable_isotope_data_assignment2-Sheet1.csv", delimiter=',',skip_header=3)
+#Create a function to read teh data file
+def read data(filename,delimiter=','.starting_row=0)
+    """This function reads data from a specified filename.
+    The specified filename should point to a .csv file."""
+    # Create an array (a multi-dimensional table) out of our data file, full of text
+    all_data = np.genfromtxt("stable_isotope_data_assignment2.csv", delimiter=',',skip_header=3)
 
-# Select the data range we are interested in, convert it into a new array, full of numbers
+    # Select the data range we are interested in, convert it into a new array, full of numbers
 isotope_data = np.array(all_data[3:,:], dtype=float)
 
  # Select the data range we are interested in, convert it into a new array, full of numbers
-isotope_data = np.array(all_data[3:,:], dtype=float)
-print(isotope_data)
+    isotope_data = np.array(all_data[3:,:], dtype=float)
+    return isotope_data
+def process_data (isotope_data)
+    """Given some input isotope data this function converts the first column to corrected Carbon and appends
+    a new column with that data."""
+    #Compute a new column from Carbon to Corrected Carbon
+    isotope_carbon = isotope_data[1:,0,None] + 1.3
 
-# Append this new column to the existing isotope_data array
-processed_isotope_data = np.append(isotope_data, isotope_data,1)
-print (processed_isotope_data)
+    # Append this new column to the existing isotope_data array
+    processed_isotope_data = np.append(isotope_data, isotope_data,1)
+    return processed_isotope_data
+
+def plot_data(processed_isotope_data, plot_isotope_figure)
+    """Given some input isotope data and a file name this function
+    plots the third column of the input data into a file with
+    the name plot_filename."""
 
 # Create a figure of the processed data
 plt.style.use('seaborn-whitegrid')
@@ -32,20 +46,30 @@ plt.title('Stable Isotope Analysis')
 plt.show(block=True)
 isotope_figure.savefig('results/stable-isotopes.pdf')
 
-def convert_data(filename, output_filename):
-    all_data = pd.read_csv(filename, index_col='Date', header=4)
+def convert_data(isotope_figure, output_isotope_figure):
+    all_data = pd.read_csv("stable_isotope_data_assignment2.csv", index_col='Carbon', header=4)
     all_data.info()
-    all_data.to_json(output_filename)
+    all_data.to_json(output_isotope_figure) 
 
-    input_filename = os.path.join(data_directory,input_file)
-    plot_filename = os.path.join(results_directory,plot_file)
+def plot() :    
+    input_file = "stable_isotope_data_assignment2.csv"
+    plot_file = 'results/stable-isotopes.pdf'
+    json_filename = "data_output.json"
+
+    data_directory = 
+  os.path.realpath(os.path.join(os.path.dirname(__file__),"..","data"))
+    results_directory =
+os.path.realpath(os.path.join(os.path.dirname(__file__),"..","results"))
+
+    input_file = os.path.join(data_directory,input_file)
+    plot_file = os.path.join(results_director,plot_file)
     json_filename = os.path.join(results_directory,json_output_file)
 
-    isotope_data = read_data(input_filename, starting_row=3)
-    processed_isotope_data = process_data(isotope_data)
-    plot_data(processed_isotope_data, plot_filename)
-    convert_data(input_filename, json_filename)
+    isotope_data = read_data(input_file, starting_row=0)
+    processed_temperature_data = process_data(isotope_data)
+    plot_data(processed_temperature_data, plot_file)
+    convert_data(input_file,json_filename)
 
 if __name__ == "__main__":
-    print(sys.argv)[1]
+    print(sys.argv)
     plot()
