@@ -16,7 +16,7 @@ def read_data(filename,delimiter=',',starting_row=0):
     all_data = np.genfromtxt(filename, delimiter=',')
 
     # Select the data range we are interested in, convert it into a new array, full of numbers
-    isotope_data = np.array(all_data[3:,:], dtype=float)
+    isotope_data = np.array(all_data[2:,:], dtype=float)
     return isotope_data
 
 def process_data (isotope_data):
