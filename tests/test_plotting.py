@@ -4,13 +4,12 @@ import numpy as np
 import pandas as pd
 
 sys.path.append(os.path.join(
-    os.path.dirname(__file__),
-    ".."))
+    os.path.dirname(__file__),".."))
 
 import src.plotting as plotting
 
 def test_plot():
-    assert(plotting.plot() == None)
+    assert(plotting.plot() is None)
 
 def test_process_data():
     input_data = np.array([[-3,1.0288],[1,1.0288]])
@@ -23,7 +22,7 @@ def test_read_data():
     input_file = "stable_isotope_data_assignment2.csv"
     data_directory = os.path.realpath(os.path.join(os.path.dirname(__file__),"..","data"))
     input_filename = os.path.join(data_directory,input_file)
-    isotope_data = plotting.read_data(input_filename, starting_row=3)
+    isotope_data = plotting.read_data(input_filename, starting_row=0)
 
     assert(isotope_data.shape == (54,2))
     assert(isotope_data[0,1] == -5.85)
